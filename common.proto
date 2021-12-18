@@ -1,0 +1,50 @@
+syntax = "proto3";
+package ms.Register.Common;
+
+
+// 服务数据
+message ServiceData{
+  // 服务名字
+  string name = 1;
+  // 服务类型
+  Type type = 2;
+  // 活跃节点总数
+  int32 count = 3;
+  // 历史节点总数
+  int32 historyCount = 4;
+}
+
+// 节点数据
+message NodeData{
+  // 节点的自定义名字
+  string name = 1;
+  // 节点的主机
+  string host = 2;
+  // 节点的端口
+  int32 port = 3;
+  // 节点的类型
+  Type type = 4;
+  // 服务名字
+  string serviceName = 5;
+  // 节点Key （唯一标识）
+  string key = 6;
+}
+// 类型（服务，节点）
+enum Type{
+  TCP = 0;
+  Http = 1;
+  Https = 3;
+  Http2 = 4;
+  Ws = 5;
+  Wss = 6;
+}
+
+
+enum Result{
+  // 成功
+  Success = 0;
+  // 失败
+  Fail = 1;
+  // 禁止
+  Forbid = 2;
+}

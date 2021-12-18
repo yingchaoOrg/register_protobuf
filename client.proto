@@ -1,0 +1,77 @@
+syntax = "proto3";
+import "common.proto";
+package ms.Register.Client;
+
+
+message Cliet{
+  Auth auth = 1;
+  RegNodeData RegNodeData = 2;
+}
+
+/**
+ * 鉴权
+ */
+message Auth{
+  string name = 1;
+  string key = 2;
+}
+
+
+
+/**
+ * 注册数据
+ */
+message RegNodeData {
+  // 节点的自定义名字
+  string name = 1;
+  // 节点的主机
+  string host = 2;
+  // 节点的端口
+  int32 port = 3;
+  // 节点的类型
+  Common.Type type = 4;
+}
+
+/**
+ * 注册服务（注册一个节点）
+ */
+message RegNode {
+  /**
+   * 服务名字
+   */
+  string name = 1;
+  /**
+   * 节点数据
+   */
+  RegNodeData data = 2;
+}
+
+/**
+ * 管理。系统管理员
+ */
+message AdminManager{
+  RegNode add = 1;
+  listService  list = 2;
+  // 列表请求
+  message listService{
+    // 页码
+    int32 page = 1;
+    // 没有行数
+    int32 limit = 2;
+  }
+}
+
+// 管理相关，各自的服务可以子管理
+/**
+ * 节点自管理.
+ */
+message NodeManager{
+  // 更新设置
+  UpdateSettings updateSettings = 1;
+  /**
+   * 更新设置
+   */
+  message UpdateSettings{
+
+  }
+}
